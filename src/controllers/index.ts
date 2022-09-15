@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Service } from '../services';
+import Service from '../services';
 
 export type ResponseError = {
   error: unknown;
@@ -14,15 +14,15 @@ enum ControllerErrors {
   notFound = 'Object not found',
 }
 
-export abstract class Controller<T> {
-  abstract route: string;
-
+abstract class Controller<T> {
   protected errors = ControllerErrors;
 
-  constructor(protected service: Service<T>) {}
+  constructor(protected _service: Service<T>) {}
 
   abstract create(
     req: RequestBody<T>,
     res: Response<T | ResponseError>,
   ): Promise<typeof res>;
 }
+
+export default Controller;

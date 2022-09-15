@@ -1,18 +1,11 @@
 import { Response } from 'express';
-import { Controller, RequestBody, ResponseError } from '.';
-import { CarService } from '../services/CarService';
+import Controller, { RequestBody, ResponseError } from '.';
+import Service from '../services';
 import { ICar } from '../interfaces/ICar';
 
 class CarController extends Controller<ICar> {
-  private _route: string;
-
-  constructor(service = new CarService(), route = '/cars') {
+  constructor(private service: Service<ICar>) {
     super(service);
-    this._route = route;
-  }
-
-  get route() {
-    return this._route;
   }
 
   create = async (
