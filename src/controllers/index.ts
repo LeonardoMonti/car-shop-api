@@ -23,6 +23,11 @@ abstract class Controller<T> {
     req: RequestBody<T>,
     res: Response<T | ResponseError>,
   ): Promise<typeof res>;
+
+  abstract read(
+    _req: Request,
+    res: Response<T[] | ResponseError>,
+  ): Promise<typeof res>;
 }
 
 export default Controller;

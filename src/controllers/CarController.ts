@@ -1,4 +1,4 @@
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import Controller, { RequestBody, ResponseError } from '.';
 import { ICar } from '../interfaces/ICar';
 import CarService from '../services/CarService';
@@ -22,6 +22,18 @@ class CarController extends Controller<ICar> {
 
       return res.status(201).json(car);
     } catch (err) {
+      return res.status(500).json({ error: this.errors.internal });
+    }
+  };
+
+  read = async (
+    _req: Request,
+    res: Response<ICar[] | ResponseError>,
+  ): Promise<typeof res> => {
+    try {
+      const cars = await this._service.read();
+      return res.status(200).json(cars);
+    } catch (error) {
       return res.status(500).json({ error: this.errors.internal });
     }
   };
