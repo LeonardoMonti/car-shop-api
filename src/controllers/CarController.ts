@@ -1,10 +1,10 @@
 import { Response } from 'express';
 import Controller, { RequestBody, ResponseError } from '.';
-import Service from '../services';
 import { ICar } from '../interfaces/ICar';
+import CarService from '../services/CarService';
 
 class CarController extends Controller<ICar> {
-  constructor(private service: Service<ICar>) {
+  constructor(service = new CarService()) {
     super(service);
   }
 
@@ -14,7 +14,7 @@ class CarController extends Controller<ICar> {
   ): Promise<typeof res> => {
     const { body } = req;
     try {
-      const car = await this.service.create(body);
+      const car = await this._service.create(body);
 
       if (!car) return res.status(404).json({ error: this.errors.notFound });
 
