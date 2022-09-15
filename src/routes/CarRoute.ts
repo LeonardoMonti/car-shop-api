@@ -1,19 +1,14 @@
 import { Router } from 'express';
-import { Controller } from '../controllers';
+import CarModel from '../models/Car';
+import CarService from '../services/CarService';
+import CarController from '../controllers/CarController';
 
-class CarRoute<T> {
-  public router: Router;
+const route = Router();
 
-  constructor() {
-    this.router = Router();
-  }
+const car = new CarModel();
+const carService = new CarService(car);
+const carController = new CarController(carService);
 
-  public addRoute(
-    controller: Controller<T>,
-    route: string = controller.route,
-  ) {
-    this.router.post(route, controller.create);
-  }
-}
+route.post('/cars', (req, res) => carController.create(req, res));
 
-export default CarRoute;
+export default route;
