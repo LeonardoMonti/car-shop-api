@@ -36,6 +36,14 @@ class CarService extends Service<ICar> {
     if (!parsed.success) return { error: parsed.error };
     return this.model.update(id, obj);
   };
+
+  delete = async (id: string): Promise<ICar | ServiceError | null> => {
+    const parsedId = idCarZodSchema.safeParse({ id });
+
+    if (!parsedId.success) return { error: parsedId.error };
+
+    return this.model.delete(id);
+  };
 }
 
 export default CarService;
