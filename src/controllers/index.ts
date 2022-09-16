@@ -13,6 +13,7 @@ enum ControllerErrors {
   internal = 'Internal Server Error',
   notFound = 'Object not found',
   idLength = 'Id must have 24 hexadecimal characters',
+  requiredId = 'Id is required',
 }
 
 abstract class Controller<T> {
@@ -32,6 +33,11 @@ abstract class Controller<T> {
 
   abstract readOne(
     req: Request<{ id: string }>,
+    res: Response<T | ResponseError>,
+  ): Promise<typeof res>;
+
+  abstract update(
+    req: Request<{ id: string }, unknown, T>,
     res: Response<T | ResponseError>,
   ): Promise<typeof res>;
 }
