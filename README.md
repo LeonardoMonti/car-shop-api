@@ -47,23 +47,26 @@ Projeto desenvolvido durante o modulo de backend na [Trybe](https://www.betrybe.
     docker ps
     ```
 
-<details>
-  <summary><strong>Endpoints 📷</strong></summary>
-
----
-
-![Cover](.github/endpoints.png)
-
----
-
-</details>
-
 #### 5. Inicie o servidor rodando `npm run dev` basta acessar [http://localhost:3001](http://localhost:3001)
 ```http
   {
     "message": "connect car shop API"
   }
 ```
+
+<details>
+  <summary><strong>Endpoints / Insomnia 📷</strong></summary>
+
+---
+
+### Endpoints json
+  - Na raiz do projeto existe o arquivo `insomnia-car-shop-api.json` basta importa-lo no seu insomnia.
+
+![Cover](.github/endpoints.png)
+
+---
+
+</details>
 
 ---
 
